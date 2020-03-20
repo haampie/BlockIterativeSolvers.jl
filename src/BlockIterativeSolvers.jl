@@ -141,7 +141,7 @@ function gmres!(X::AbstractVecOrMat{T}, A, B; steps = 10, block_size = 5, tolera
         mul!(compact_qr_workspace, view(V, :, 1:curr_to), view(H, 1:curr_to, curr_from:curr_to), one(T), -one(T))
         mul!(view(correction, 1:curr_to, :), view(V, :, 1:curr_to)', compact_qr_workspace)
         mul!(compact_qr_workspace, view(V, :, 1:curr_to), view(correction, 1:curr_to, :), one(T), -one(T))
-        view(H, 1:curr_to, curr_from:curr_to) .+ view(correction, 1:curr_to, :)
+        view(H, 1:curr_to, curr_from:curr_to) .+= view(correction, 1:curr_to, :)
 
         # Internal orthogonalization
         qr_block = qr!(compact_qr_workspace)
