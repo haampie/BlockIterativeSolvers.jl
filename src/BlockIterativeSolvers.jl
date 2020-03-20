@@ -106,9 +106,6 @@ function gmres!(X::AbstractVecOrMat{T}, A, B; steps = 10, block_size = 5, tolera
     # The residual matrix of the least-squares problem
     small_residual = zeros(T, block_size * (steps + 1), unknown_size)
 
-    # The small dimensional solution to HY = [R; O] in the least squares sense
-    small_least_squares_solution = zeros(T, block_size * steps, unknown_size)
-
     # This will hold the second projection when classical Gram-Schmidt is repeated
     correction = similar(H, block_size * steps, block_size)
 
