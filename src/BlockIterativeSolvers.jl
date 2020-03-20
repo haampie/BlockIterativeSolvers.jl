@@ -124,7 +124,7 @@ function gmres!(X::AbstractVecOrMat{T}, A, B; steps = 10, block_size = 5, tolera
 
     step = 1
 
-    frobenius_norm_residual = typemax(T)
+    frobenius_norm_residual = typemax(real(T))
 
     while step <= steps && frobenius_norm_residual > tolerance
         curr_from, curr_to = (step - 1) * block_size + 1, step * block_size
