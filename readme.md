@@ -23,4 +23,17 @@ julia> norm(A * X - B)
 3.1536626111447993e-7
 ```
 
+```julia
+julia> Ac = sprand(ComplexF64, 1000, 1000, 2/1000) + 4I;
+
+julia> Bc = rand(ComplexF64, 1000, 3);
+
+julia> Xc = rand(ComplexF64, 1000, 3);
+
+julia> BlockIterativeSolvers.gmres!(Xc, Ac, Bc, steps = 30, block_size = 8, tolerance = 1e-6)
+
+julia> norm(Ac * Xc - Bc)
+4.2455026885746224e-7
+```
+
 
